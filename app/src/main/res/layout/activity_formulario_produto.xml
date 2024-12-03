@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.activity.FormularioProdutoActivity">
+
+        <EditText
+            android:id="@+id/campo_nome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="Nome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/campo_descricao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Descrição"
+            app:layout_constraintEnd_toEndOf="@id/campo_nome"
+            app:layout_constraintStart_toStartOf="@id/campo_nome"
+            app:layout_constraintTop_toBottomOf="@id/campo_nome" />
+
+        <EditText
+            android:id="@+id/campo_valor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Valor"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@id/campo_descricao"
+            app:layout_constraintStart_toStartOf="@id/campo_descricao"
+            app:layout_constraintTop_toBottomOf="@id/campo_descricao" />
+
+        <Button
+            android:id="@+id/btn_salvar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Salvar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/campo_valor"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

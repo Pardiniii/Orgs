@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.gustavo.orgs.R
+import com.gustavo.orgs.dao.ProdutosDAO
 import com.gustavo.orgs.model.Produto
 import java.math.BigDecimal
 
@@ -42,7 +43,10 @@ class FormularioProdutoActivity : AppCompatActivity(
                 descricao,
                 valor
             )
-
+            Log.i("FormularioProduto", "onCreate: $produtoCriado")
+            val dao = ProdutosDAO()
+            dao.addProduto(produtoCriado)
+            Log.i("FormularioProduto", "onCreate: ${dao.buscaTodos()}")
         }
 
     }

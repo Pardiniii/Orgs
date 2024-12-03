@@ -19,8 +19,8 @@ import java.math.BigDecimal
 class FormularioProdutoActivity : AppCompatActivity(
     R.layout.activity_formulario_produto) {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         val botaoSalvarFormulario = findViewById<Button>(R.id.btn_salvar)
         botaoSalvarFormulario.setOnClickListener {
@@ -47,6 +47,7 @@ class FormularioProdutoActivity : AppCompatActivity(
             val dao = ProdutosDAO()
             dao.addProduto(produtoCriado)
             Log.i("FormularioProduto", "onCreate: ${dao.buscaTodos()}")
+            finish()
         }
 
     }

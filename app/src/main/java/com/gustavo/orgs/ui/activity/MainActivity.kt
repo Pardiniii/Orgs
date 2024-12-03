@@ -17,6 +17,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val dao = ProdutosDAO()
         recyclerView.adapter = ListaProdutosAdapter(context = this, produtos = dao.buscaTodos())

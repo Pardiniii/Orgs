@@ -6,21 +6,25 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.gustavo.orgs.R
 import com.gustavo.orgs.dao.ProdutosDAO
+import com.gustavo.orgs.databinding.ActivityFormularioProdutoBinding
 import com.gustavo.orgs.model.Produto
 import java.math.BigDecimal
 
-class FormularioProdutoActivity : AppCompatActivity(
-    R.layout.activity_formulario_produto) {
+class FormularioProdutoActivity : AppCompatActivity() {
+
+    private val binding by lazy {
+        ActivityFormularioProdutoBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(binding.root)
         configuraBotaoSalvar()
 
     }
 
     private fun configuraBotaoSalvar() {
-        val botaoSalvarFormulario = findViewById<Button>(R.id.formulario_produto_salvar)
+        val botaoSalvarFormulario = binding.formularioProdutoSalvar
         val dao = ProdutosDAO()
         botaoSalvarFormulario.setOnClickListener {
             val produtoCriado = criaProduto()
@@ -32,13 +36,13 @@ class FormularioProdutoActivity : AppCompatActivity(
     }
 
     private fun criaProduto(): Produto {
-        val campoNome = findViewById<EditText>(R.id.formulario_produto_nome)
+        val campoNome = binding.formularioProdutoNome
         val nome = campoNome.text.toString()
 
-        val campoDesc = findViewById<EditText>(R.id.formulario_produto_descricao)
+        val campoDesc = binding.formularioProdutoDescricao
         val descricao = campoDesc.text.toString()
 
-        val campoValor = findViewById<EditText>(R.id.formulario_produto_valor)
+        val campoValor = binding.formularioProdutoValor
         val valorEmTexto = campoValor.text.toString()
         val valor = if (valorEmTexto.isBlank()) {
             BigDecimal.ZERO

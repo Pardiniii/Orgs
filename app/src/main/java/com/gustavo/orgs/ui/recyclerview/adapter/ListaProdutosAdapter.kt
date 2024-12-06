@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gustavo.orgs.R
+import com.gustavo.orgs.databinding.ProdutoItemBinding
 import com.gustavo.orgs.model.Produto
 
 
@@ -17,21 +18,22 @@ class ListaProdutosAdapter(
 
     private val produtos = produtos.toMutableList()
 
-    class ViewHolder (view : View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(private val binding: ProdutoItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun vincula(produto: Produto) {
-            val nome = itemView.findViewById<TextView>(R.id.nome)
+            val nome = binding.nome
             nome.text = produto.nome
-            val desc = itemView.findViewById<TextView>(R.id.descricao)
+            val desc = binding.descricao
             desc.text = produto.desc
-            val valor = itemView.findViewById<TextView>(R.id.valor)
+            val valor = binding.valor
             valor.text = produto.valor.toPlainString()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.produto_item, parent, false)
-        return ViewHolder(view)
+        val binding = ProdutoItemBinding.inflate(inflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {

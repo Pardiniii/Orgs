@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gustavo.orgs.R
 import com.gustavo.orgs.databinding.ProdutoItemBinding
 import com.gustavo.orgs.model.Produto
+import java.text.NumberFormat
+import java.util.Locale
 
 
 class ListaProdutosAdapter(
@@ -26,7 +28,9 @@ class ListaProdutosAdapter(
             val desc = binding.descricao
             desc.text = produto.desc
             val valor = binding.valor
-            valor.text = produto.valor.toPlainString()
+            val formatador: NumberFormat = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
+            val valorFormatado = formatador.format(produto.valor)
+            valor.text = valorFormatado
         }
     }
 

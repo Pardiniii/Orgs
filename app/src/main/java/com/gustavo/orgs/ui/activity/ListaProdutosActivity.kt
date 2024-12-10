@@ -14,7 +14,6 @@ class ListaProdutosActivity : AppCompatActivity(){
 
     private val dao = ProdutosDAO()
     private val adapter  =ListaProdutosAdapter(context = this, produtos = dao.buscaTodos())
-
     private val binding by lazy {
         ActivityListaProdutosBinding.inflate(layoutInflater)
     }
@@ -29,6 +28,7 @@ class ListaProdutosActivity : AppCompatActivity(){
     override fun onResume() {
         super.onResume()
         adapter.atualiza(dao.buscaTodos())
+
     }
 
     private fun configuraFAB() {

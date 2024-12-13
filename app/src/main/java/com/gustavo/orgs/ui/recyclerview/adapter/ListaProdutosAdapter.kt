@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.gustavo.orgs.R
 import com.gustavo.orgs.databinding.ProdutoItemBinding
+import com.gustavo.orgs.extensions.tentaCarregarImagem
 import com.gustavo.orgs.model.Produto
 import java.text.NumberFormat
 import java.util.Locale
@@ -32,7 +33,17 @@ class ListaProdutosAdapter(
             val formatador: NumberFormat = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
             val valorFormatado = formatador.format(produto.valor)
             valor.text = valorFormatado
-            binding.imageView.load(produto.imagem)
+
+            val visibilidade = if(produto.imagem != null){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+
+            binding.imageView.visibility = visibilidade
+
+            binding.imageView.tentaCarregarImagem(produto.imagem)
+
         }
     }
 

@@ -11,7 +11,9 @@ import com.gustavo.orgs.R
 import com.gustavo.orgs.dao.ProdutosDAO
 import com.gustavo.orgs.databinding.ActivityFormularioProdutoBinding
 import com.gustavo.orgs.databinding.FormularioImagemBinding
+import com.gustavo.orgs.extensions.tentaCarregarImagem
 import com.gustavo.orgs.model.Produto
+import com.gustavo.orgs.ui.dialog.FormularioImagemDialog
 import java.math.BigDecimal
 
 class FormularioProdutoActivity : AppCompatActivity() {
@@ -27,22 +29,11 @@ class FormularioProdutoActivity : AppCompatActivity() {
         configuraBotaoSalvar()
 
         binding.fomrularioProdutoImagem.setOnClickListener{
-            val bindingFormularioImagem = FormularioImagemBinding.inflate(layoutInflater)
-            bindingFormularioImagem.formularioImagemBtnCarregar.setOnClickListener{
-                val url = bindingFormularioImagem.formularioImagemUrl.text.toString()
-                bindingFormularioImagem.formularioImagemImageview.load(url)
+            FormularioImagemDialog(this).mostra{
+                imagem ->
+                url = imagem
+                binding.fomrularioProdutoImagem.tentaCarregarImagem(url)
             }
-
-            AlertDialog.Builder(this)
-                .setView(bindingFormularioImagem.root)
-                .setPositiveButton("Confirmar") {_, _ ->
-                    url = bindingFormularioImagem.formularioImagemUrl.text.toString()
-                    binding.fomrularioProdutoImagem.load(url)
-                }
-                .setNegativeButton("Cancelar") {_, _ ->
-
-                }
-                .show()
 
         }
 
@@ -53,8 +44,6 @@ class FormularioProdutoActivity : AppCompatActivity() {
         val dao = ProdutosDAO()
         botaoSalvarFormulario.setOnClickListener {
             val produtoCriado = criaProduto()
-
-
             dao.addProduto(produtoCriado)
             finish()
         }

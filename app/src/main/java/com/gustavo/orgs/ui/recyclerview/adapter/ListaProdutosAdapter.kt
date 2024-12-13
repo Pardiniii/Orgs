@@ -32,7 +32,7 @@ class ListaProdutosAdapter(
             val formatador: NumberFormat = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
             val valorFormatado = formatador.format(produto.valor)
             valor.text = valorFormatado
-            binding.imageView.load("https://tse3.mm.bing.net/th/id/OIP.oUqmnvd3VRF9zKsI1SWIOQHaE8?rs=1&pid=ImgDetMain")
+            binding.imageView.load(produto.imagem)
         }
     }
 

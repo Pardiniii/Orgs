@@ -13,7 +13,7 @@ import com.gustavo.orgs.ui.recyclerview.adapter.ListaProdutosAdapter
 class ListaProdutosActivity : AppCompatActivity(){
 
     private val dao = ProdutosDAO()
-    private val adapter  =ListaProdutosAdapter(context = this, produtos = dao.buscaTodos())
+    private val adapter = ListaProdutosAdapter(context = this, produtos = dao.buscaTodos())
     private val binding by lazy {
         ActivityListaProdutosBinding.inflate(layoutInflater)
     }
@@ -47,5 +47,15 @@ class ListaProdutosActivity : AppCompatActivity(){
         val recyclerView = binding.listaProdutosRecyclerview
         val dao = ProdutosDAO()
         recyclerView.adapter = adapter
+
+        adapter.quandoClicaNoItem = {
+            val intent = Intent(this, DetalhesProdutoActivity::class.java)
+                .apply {
+            putExtra(CHAVE_PRODUTO, it)
+            }
+            startActivity(intent)
+        }
+
+
     }
 }

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.DetalhesProdutoActivity">
+
+
+        <ImageView
+            android:id="@+id/detalhes_imagem_produto"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:contentDescription="Imagem do produto"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/imagem_padrao" />
+
+        <TextView
+            android:id="@+id/detalhes_valor_produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_corners"
+            android:elevation="10dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="8dp"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/detalhes_imagem_produto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detalhes_imagem_produto"
+            tools:text="R$ 99,999" />
+
+        <TextView
+            android:id="@+id/detalhes_nome_produto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detalhes_valor_produto"
+            tools:text="Nome do Produto"/>
+
+        <TextView
+            android:id="@+id/detalhes_descricao_produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/detalhes_nome_produto"
+            app:layout_constraintTop_toBottomOf="@id/detalhes_nome_produto"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@tools:sample/lorem/random" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -15,6 +15,7 @@ class FormularioProdutoActivity : AppCompatActivity() {
         ActivityFormularioProdutoBinding.inflate(layoutInflater)
     }
     private var url: String? = null
+    private var idProduto = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,16 @@ class FormularioProdutoActivity : AppCompatActivity() {
                 binding.fomrularioProdutoImagem.tentaCarregarImagem(url)
             }
         }
+        intent.getParcelableExtra<Produto>(CHAVE_PRODUTO)?.let {produtoCarregado ->
+            title = "Alterar produto"
+            idProduto = produtoCarregado.id
+            url = produtoCarregado.imagem
+            binding.fomrularioProdutoImagem.tentaCarregarImagem(produtoCarregado.imagem)
+            binding.formularioProdutoNome.setText(produtoCarregado.nome)
+            binding.formularioProdutoDescricao.setText(produtoCarregado.desc)
+            binding.formularioProdutoValor.setText(produtoCarregado.valor.toPlainString())
+
+        }
     }
 
     private fun configuraBotaoSalvar() {
@@ -39,7 +50,11 @@ class FormularioProdutoActivity : AppCompatActivity() {
 
         botaoSalvarFormulario.setOnClickListener {
             val produtoCriado = criaProduto()
-            produtoDAO.insere(produtoCriado)
+            if (idProduto > 0 ){
+                produtoDAO.atualiza(produtoCriado)
+            } else {
+                produtoDAO.insere(produtoCriado)
+            }
             finish()
         }
     }
@@ -60,7 +75,11 @@ class FormularioProdutoActivity : AppCompatActivity() {
         }
 
         val produtoCriado = Produto(
-            nome = nome, desc = descricao, valor = valor, imagem = url
+            id = idProduto,
+            nome = nome,
+            desc = descricao,
+            valor = valor,
+            imagem = url
         )
         return produtoCriado
     }

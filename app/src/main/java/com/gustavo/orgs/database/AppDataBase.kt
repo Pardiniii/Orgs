@@ -9,7 +9,7 @@ import com.gustavo.orgs.database.converter.Converters
 import com.gustavo.orgs.database.dao.ProdutoDAO
 import com.gustavo.orgs.model.Produto
 
-@Database(entities = [Produto::class], version = 1)
+@Database(entities = [Produto::class], version = 1, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDataBase : RoomDatabase(){
     abstract fun produtoDAO() : ProdutoDAO

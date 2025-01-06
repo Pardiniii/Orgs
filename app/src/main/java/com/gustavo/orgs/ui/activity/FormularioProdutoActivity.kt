@@ -1,18 +1,9 @@
 package com.gustavo.orgs.ui.activity
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
-import coil.load
-import com.gustavo.orgs.R
-import com.gustavo.orgs.dao.ProdutosDAO
 import com.gustavo.orgs.database.AppDataBase
 import com.gustavo.orgs.databinding.ActivityFormularioProdutoBinding
-import com.gustavo.orgs.databinding.FormularioImagemBinding
 import com.gustavo.orgs.extensions.tentaCarregarImagem
 import com.gustavo.orgs.model.Produto
 import com.gustavo.orgs.ui.dialog.FormularioImagemDialog
@@ -45,13 +36,6 @@ class FormularioProdutoActivity : AppCompatActivity() {
         val db = AppDataBase.instancia(this)
 
         val produtoDAO = db.produtoDAO()
-        produtoDAO.insere(
-            Produto(
-                nome = "Maça",
-                desc = "Fruta vermelha",
-                valor = BigDecimal("10.00")
-            )
-        )
 
         botaoSalvarFormulario.setOnClickListener {
             val produtoCriado = criaProduto()

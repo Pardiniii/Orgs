@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.gustavo.orgs.R
+import com.gustavo.orgs.database.AppDataBase
 import com.gustavo.orgs.databinding.ActivityDetalhesProdutoBinding
 import com.gustavo.orgs.extensions.formataParaMoedaBrasileira
 import com.gustavo.orgs.extensions.tentaCarregarImagem
@@ -12,6 +13,7 @@ import com.gustavo.orgs.model.Produto
 
 class DetalhesProdutoActivity : AppCompatActivity() {
 
+    private lateinit var produto: Produto
     val binding by lazy {
         ActivityDetalhesProdutoBinding.inflate(layoutInflater)
     }
@@ -29,20 +31,26 @@ class DetalhesProdutoActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.menu_detalhes_produto_editar -> {
-
-            }
-            R.id.menu_detalhes_produto_excluir -> {
-
+        if (::produto.isInitialized) {
+            val db = AppDataBase.instancia(this)
+            val produtoDao = db.produtoDAO()
+            when(item.itemId){
+                R.id.menu_detalhes_produto_excluir -> {
+                    produtoDao.deleta(produto)
+                    finish()
+                }
+                R.id.menu_detalhes_produto_editar -> {
+                    //Log.i(TAG, "onOptionsItemSelected: editar")
+                }
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun tentaCarregarProduto() {
-        intent.getParcelableExtra<Produto>(CHAVE_PRODUTO)?.let {
-                produtoCarregado -> preencheCampos(produtoCarregado)
+        intent.getParcelableExtra<Produto>(CHAVE_PRODUTO)?.let { produtoCarregado ->
+            produto = produtoCarregado
+            preencheCampos(produtoCarregado)
         } ?: finish()  //finaliza a activity caso nao encontre o produto
     }
 
@@ -53,9 +61,8 @@ class DetalhesProdutoActivity : AppCompatActivity() {
             detalhesDescricaoProduto.text = produtoCarregado.desc
             detalhesValorProduto.text =
                 produtoCarregado.valor.formataParaMoedaBrasileira()
-            }
         }
-
+    }
 
 
 }

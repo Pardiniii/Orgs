@@ -23,7 +23,7 @@ class DetalhesProdutoActivity : AppCompatActivity() {
     private fun tentaCarregarProduto() {
         intent.getParcelableExtra<Produto>(CHAVE_PRODUTO)?.let {
                 produtoCarregado -> preencheCampos(produtoCarregado)
-        } //?: finish()  //finaliza a activity caso nao encontre o produto
+        } ?: finish()  //finaliza a activity caso nao encontre o produto
     }
 
     private fun preencheCampos(produtoCarregado: Produto) {

@@ -6,9 +6,11 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import coil.load
 import com.gustavo.orgs.R
 import com.gustavo.orgs.dao.ProdutosDAO
+import com.gustavo.orgs.database.AppDataBase
 import com.gustavo.orgs.databinding.ActivityFormularioProdutoBinding
 import com.gustavo.orgs.databinding.FormularioImagemBinding
 import com.gustavo.orgs.extensions.tentaCarregarImagem
@@ -34,17 +36,26 @@ class FormularioProdutoActivity : AppCompatActivity() {
                 url = imagem
                 binding.fomrularioProdutoImagem.tentaCarregarImagem(url)
             }
-
         }
-
     }
 
     private fun configuraBotaoSalvar() {
         val botaoSalvarFormulario = binding.formularioProdutoSalvar
-        val dao = ProdutosDAO()
+
+        val db = AppDataBase.instancia(this)
+
+        val produtoDAO = db.produtoDAO()
+        produtoDAO.insere(
+            Produto(
+                nome = "Maça",
+                desc = "Fruta vermelha",
+                valor = BigDecimal("10.00")
+            )
+        )
+
         botaoSalvarFormulario.setOnClickListener {
             val produtoCriado = criaProduto()
-            dao.addProduto(produtoCriado)
+            produtoDAO.insere(produtoCriado)
             finish()
         }
     }
@@ -65,10 +76,7 @@ class FormularioProdutoActivity : AppCompatActivity() {
         }
 
         val produtoCriado = Produto(
-            nome,
-            descricao,
-            valor,
-            this.url
+            nome = nome, desc = descricao, valor = valor, imagem = url
         )
         return produtoCriado
     }

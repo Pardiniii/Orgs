@@ -1,14 +1,16 @@
 package com.gustavo.orgs.ui.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.gustavo.orgs.R
+import androidx.room.Room
 import com.gustavo.orgs.dao.ProdutosDAO
+import com.gustavo.orgs.database.AppDataBase
 import com.gustavo.orgs.databinding.ActivityListaProdutosBinding
+import com.gustavo.orgs.model.Produto
 import com.gustavo.orgs.ui.recyclerview.adapter.ListaProdutosAdapter
+import java.math.BigDecimal
 
 class ListaProdutosActivity : AppCompatActivity(){
 
@@ -23,12 +25,16 @@ class ListaProdutosActivity : AppCompatActivity(){
         setContentView(binding.root)
         configuraRecyclerView()
         configuraFAB()
+
+
     }
 
     override fun onResume() {
         super.onResume()
-        adapter.atualiza(dao.buscaTodos())
+        val db = AppDataBase.instancia(this)
 
+        val produtoDAO = db.produtoDAO()
+        adapter.atualiza(produtoDAO.buscaTodos())
     }
 
     private fun configuraFAB() {

@@ -48,7 +48,7 @@ class ListaProdutosActivity : AppCompatActivity(){
         adapter.quandoClicaNoItem = {
             val intent = Intent(this, DetalhesProdutoActivity::class.java)
                 .apply {
-            putExtra(CHAVE_PRODUTO, it)
+            putExtra(CHAVE_PRODUTO_ID, it.id)
             }
             startActivity(intent)
         }

@@ -11,7 +11,7 @@ import java.math.BigDecimal
 @Parcelize
 data class Produto(
     @PrimaryKey(autoGenerate = true)
-    val id : Int = 0,
+    val id : Long = 0,
 
     @ColumnInfo(name = "Nome_produto")
     val nome : String,

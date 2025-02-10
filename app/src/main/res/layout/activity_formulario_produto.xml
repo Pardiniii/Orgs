@@ -81,7 +81,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/formulario_produto_salvar"
+            android:id="@+id/btn_formulario_produto_salvar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

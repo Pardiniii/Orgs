@@ -64,7 +64,7 @@ class FormularioProdutoActivity : AppCompatActivity() {
     }
 
     private fun configuraBotaoSalvar() {
-        val botaoSalvarFormulario = binding.formularioProdutoSalvar
+        val botaoSalvarFormulario = binding.btnFormularioProdutoSalvar
 
         botaoSalvarFormulario.setOnClickListener {
             val produtoCriado = criaProduto()

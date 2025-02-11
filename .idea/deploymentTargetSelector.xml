@@ -11,6 +11,9 @@
       <SelectionState runConfigName="DeveSerCapazDeEditarProduto()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="DeveSerCapazDeEditarProduto() (1)">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
